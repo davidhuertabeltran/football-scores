@@ -32,7 +32,7 @@ export const Fixture = () => {
 
 	useEffect(() => {
 		// fetchData();
-		setFixture(data[5]) //comment this line when using API
+		setFixture(data[6]) //comment this line when using API
 	}, [matchID]);
 
 
@@ -41,7 +41,7 @@ export const Fixture = () => {
 	}
 
 	return (
-		<div className="fixture-container h-screen px-10 border rounded-xl">
+		<div className="fixture-container  px-10 border rounded-xl">
 			<div className="card-fixture-details py-1">
 				<div className="league-details flex justify-between xl:items-end items-center">
 					<Back />

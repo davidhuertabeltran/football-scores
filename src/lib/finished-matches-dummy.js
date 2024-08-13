@@ -22,7 +22,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -90,7 +90,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -158,7 +158,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -226,7 +226,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -294,7 +294,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -362,7 +362,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -430,7 +430,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -498,7 +498,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -566,7 +566,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
@@ -634,7 +634,7 @@ export const finishedDummy = [
 			}
 		},
 		"league": {
-			"id": 1,
+			"id": 98,
 			"name": "World Cup",
 			"country": "World",
 			"logo": "https://media.api-sports.io/football/leagues/1.png",
