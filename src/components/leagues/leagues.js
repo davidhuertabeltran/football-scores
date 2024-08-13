@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 import { FetchMatches } from '../../requests/fetch-matches';
 import { finishedDummy } from '../../lib/finished-matches-dummy';
-import { data } from '../../lib/dummy-data';
 import { Back } from '../buttons/back';
 import FixturesTable from '../fixtures-table/fixtures-table';
 
@@ -13,7 +12,7 @@ export const Leagues = ({ fixtures }) => {
 
 	const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${leagueID}&last=9&status=FT-AET-PEN`
 	const [pastFixtures, setPastFixtures] = useState([]);
-	const [loading, setLoading] = useState(true); //change to true when using API
+	const [loading, setLoading] = useState(false); //change to true when using API
 
 	const fetchData = useCallback(async () => {
 		try {
@@ -28,6 +27,10 @@ export const Leagues = ({ fixtures }) => {
 	useEffect(() => {
 		// fetchData();
 	}, [leagueID]);
+
+	if (leagues.length === 0) {
+		return <div className="text-center">No fixtures found for this league.</div>;
+	}
 
 	return (
 		<div className="league-container">
@@ -45,7 +48,7 @@ export const Leagues = ({ fixtures }) => {
 
 			<div className="live-matches-league-container border rounded-xl p-12 mt-8">
 				<p className="text-xl font-bold uppercase text-center">Live Matches</p>
-				<FixturesTable fixtures={data} />
+				<FixturesTable fixtures={leagues} />
 			</div>
 			<div className="finished-matches-league-container border rounded-xl p-12 mt-8">
 				<p className="text-l font-bold text-center uppercase">Finished matches</p>
