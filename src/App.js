@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import NavBar from './components/navbar/navbar';
 import FixturesTable from './components/fixtures-table/fixtures-table';
@@ -16,6 +16,7 @@ import { AvailableLeagues } from './components/leagues/leagues-id';
 
 function App() {
   const leagueIDs = AvailableLeagues.map(league => league.id);
+  const leagueNames = AvailableLeagues.map(league => league.name);
   const leagueIDsString = leagueIDs.join('-');
   // const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=${leagueIDsString}`;
   const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all`;
@@ -25,12 +26,18 @@ function App() {
   const [fixtures, setFixtures] = useState([]);
   const [loading, setLoading] = useState(false); //change to true when using API
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
 
-    const matches = await FetchMatches(url);
-    setFixtures(matches);
-    setLoading(false);
-  };
+    try {
+      const matches = await FetchMatches(url);
+      setFixtures(matches);
+      setLoading(false);
+
+    } catch (error) {
+
+      setLoading(false);
+    }
+  }, [url]);
 
   useEffect(() => {
     // fetchData();

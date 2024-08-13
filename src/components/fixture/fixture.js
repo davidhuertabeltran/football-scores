@@ -32,7 +32,7 @@ export const Fixture = () => {
 
 	useEffect(() => {
 		// fetchData();
-		setFixture(data[0])
+		setFixture(data[5]) //comment this line when using API
 	}, [matchID]);
 
 
@@ -41,7 +41,7 @@ export const Fixture = () => {
 	}
 
 	return (
-		<div className="fixture-container h-screen px-10">
+		<div className="fixture-container h-screen px-10 border rounded-xl">
 			<div className="card-fixture-details py-1">
 				<div className="league-details flex justify-between xl:items-end items-center">
 					<Back />
@@ -55,9 +55,9 @@ export const Fixture = () => {
 					</div>
 				</div>
 				<div className="divider"></div>
-				<div className="fixture-half text-center">
-					<p>{fixture.fixture.status.long}</p>
-				</div>
+
+				<FixtureView fixture={fixture} />
+
 				{
 					loading ? (
 						<div className="text-center">Loading...</div>
@@ -77,14 +77,7 @@ export const Fixture = () => {
 
 							<div className="fixture-goals w-[16%] text-center " align="center">
 								{
-									fixture.score.fulltime.home === null && fixture.score.fulltime.away === null ? (
-										<>
-											<Score fixture={fixture} />
-											<FixtureView fixture={fixture} />
-										</>
-									) : (
-										<Score fixture={fixture} />
-									)
+									<Score fixture={fixture} />
 								}
 							</div>
 

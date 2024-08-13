@@ -16,7 +16,7 @@ export const data = [
 				"city": "Yokohama"
 			},
 			"status": {
-				"long": "First Half",
+				"long": "Match Finished",
 				"short": "1H",
 				"elapsed": 44
 			}
@@ -54,8 +54,8 @@ export const data = [
 				"away": 1
 			},
 			"fulltime": {
-				"home": null,
-				"away": null
+				"home": 2,
+				"away": 2
 			},
 			"extratime": {
 				"home": null,

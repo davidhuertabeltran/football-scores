@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { FetchMatches } from '../../requests/fetch-matches';
 import { finishedDummy } from '../../lib/finished-matches-dummy';
 import { data } from '../../lib/dummy-data';
@@ -18,11 +18,16 @@ export const Leagues = ({ fixtures }) => {
 	const [pastFixtures, setPastFixtures] = useState([]);
 	const [loading, setLoading] = useState(false); //change to true when using API
 
-	const fetchData = async () => {
-		const matches = await FetchMatches(url);
-		setPastFixtures(matches);
-		setLoading(false);
-	};
+	const fetchData = useCallback(async () => {
+		try {
+			console.log('Fetching data for leagueID:', leagueID);
+			const matches = await FetchMatches(url);
+			setPastFixtures(matches);
+			setLoading(false);
+		} catch (error) {
+			setLoading(false);
+		}
+	}, [leagueID, url]);
 
 	useEffect(() => {
 		// fetchData();
@@ -41,20 +46,23 @@ export const Leagues = ({ fixtures }) => {
 					</div>
 				</div>
 			</div>
-			<div className="divider"></div>
-			<p className="text-xl font-bold uppercase text-center">Live Matches</p>
 
-			<FixturesTable fixtures={leagues} />
-			<div className="divider my-10"></div>
-			<p className="text-l font-bold text-center">Finished matches</p>
-			<p className="text-l font-bold text-center uppercase">{leagues[0].league.name}</p>
-			{loading ? (
-				<div className="text-center">Loading...</div>
-			) : finishedDummy.length === 0 ? ( //change to pastFixtures.length when using API
-				<div className="text-center">There are no data for previous matches at the moment</div>
-			) : (
-				<FixturesTable fixtures={finishedDummy} />
-			)}
+			<div className="live-matches-league-container border rounded-xl p-12 mt-8">
+				<p className="text-xl font-bold uppercase text-center">Live Matches</p>
+				<FixturesTable fixtures={leagues} />
+			</div>
+			<div className="finished-matches-league-container border rounded-xl p-12 mt-8">
+				<p className="text-l font-bold text-center uppercase">Finished matches</p>
+				<p className="text-l font-bold text-center uppercase">{leagues[0].league.name}</p>
+				{loading ? (
+					<div className="text-center">Loading...</div>
+				) : finishedDummy.length === 0 ? ( //change to pastFixtures.length when using API
+					<div className="text-center">There are no data for previous matches at the moment</div>
+				) : (
+					<FixturesTable fixtures={finishedDummy} />
+				)}
+			</div>
+
 		</div>
 
 	);
