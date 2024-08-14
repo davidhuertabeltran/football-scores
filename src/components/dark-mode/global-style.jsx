@@ -5,8 +5,9 @@ export const lightTheme = {
     text: 'rgb(19, 28, 35)',
     bodyInverse: 'rgb(19, 28, 35)',
     textInverse: '#fff',
-    cardfixtureBoxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;',
-    navBarText: 'white'
+    cardfixtureBoxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',
+    navBarText: 'white',
+    eventBoxShadow: 'rgba(0, 0, 0, 0.09) 0px 3px 12px'
 };
 
 export const darkTheme = {
@@ -14,9 +15,10 @@ export const darkTheme = {
     text: '#fff',
     bodyInverse: '#fff',
     textInverse: 'rgb(19, 28, 35)',
-    cardfixtureBg: '#24486f',
-    cardfixtureBoxShadow: 'rgb(51, 69, 138) 0px 14px 28px,rgba(0, 0, 0, 0.22) 0px 10px 10px;',
-    navBarText: 'black'
+    cardfixtureBg: '#000',
+    cardfixtureBoxShadow: 'rgba(55, 53, 53, 0.72) 0px 1px 3px,rgb(155, 155, 155) 0px 1px 2px',
+    navBarText: 'black',
+    eventBoxShadow: 'rgb(0, 0, 0) 2px 2px 2px'
 }
 
 export const GlobalStyle = createGlobalStyle`

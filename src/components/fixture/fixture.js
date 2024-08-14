@@ -8,7 +8,7 @@ import { FetchMatches } from '../../requests/fetch-matches';
 import { data } from '../../lib/dummy-data';
 import { FixtureView } from '../fixture-status-indicators/fixture-view';
 
-export const Fixture = () => {
+export const Fixture = ({ theme }) => {
 	const navigate = useNavigate();
 	const { matchID } = useParams();
 
@@ -67,7 +67,7 @@ export const Fixture = () => {
 						<div className="fixture-details w-full flex p-1 justify-evenly items-center">
 
 							<div className="team-home-details flex justify-evenly items-center flex-col w-[33%] gap-2">
-								<div className="home-team-logo w-[100px] h-auto" align="center">
+								<div className="home-team-logo w-[80px] h-auto" align="center">
 									<img src={fixture.teams.home.logo} alt={fixture.teams.home.name} />
 								</div>
 								<div className="home-team-name">
@@ -82,7 +82,7 @@ export const Fixture = () => {
 							</div>
 
 							<div className="team-away-details flex justify-evenly items-center flex-col w-[33%] gap-2">
-								<div className="away-team-logo w-[100px] h-auto" align="center">
+								<div className="away-team-logo w-[80px] h-auto" align="center">
 									<img src={fixture.teams.away.logo} alt={fixture.teams.away.name} />
 								</div>
 								<div className="away-team-name">
@@ -94,7 +94,7 @@ export const Fixture = () => {
 				}
 			</div>
 			<div className="divider"></div>
-			<Events fixture={fixture} />
+			<Events fixture={fixture} theme={theme} />
 		</div>
 	)
 }

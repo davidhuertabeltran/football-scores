@@ -15,7 +15,7 @@ export default function FixturesTable({ fixtures }) {
 	}));
 
 	return (
-		<div className="fixtures-league-groups">
+		<div className="fixtures-league-groups px-6">
 			{leagueData.map((league, index) => {
 				const leagueFixtures = fixtures.filter(fixture => fixture.league.id === league.id);
 
@@ -24,21 +24,21 @@ export default function FixturesTable({ fixtures }) {
 				}
 
 				return (
-					<>
+					<div key={index} className="fixtures-table-container">
 						<div key={index} className="league-group my-10">
 							<h1 className="league-name font-bold uppercase">{league.name}</h1>
-							<div className="fixtures-table flex flex-wrap gap-8 pt-6">
+							<div className="fixtures-table flex flex-wrap gap-8 pt-6 justify-center md:justify-start">
 								{leagueFixtures.map((fixture, fixtureIndex) => (
 									<div
 										onClick={() => navigate(`/fixture/${fixture.fixture.id}`)}
 										key={fixtureIndex}
-										className="card-fixture border-2 border-blue-200 w-[275px] h-[170px] rounded-md p-2 relative cursor-pointer flex flex-col justify-between"
+										className="card-fixture w-[275px] h-[140px] rounded-md p-2 relative cursor-pointer flex flex-col justify-between"
 									>
-										<div className="card-fixture-details py-1">
+										<div className="card-fixture-details">
 											<FixtureBox fixture={fixture} />
 											<div className="fixture-details w-full flex p-1 justify-evenly items-center">
 												<div className="team-home-details flex justify-evenly items-center flex-col w-[33%] gap-2">
-													<div className="home-team-logo w-[70px] h-[70px] flex items-center">
+													<div className="home-team-logo w-[50px] h-[50px] flex items-center">
 														<img src={fixture.teams.home.logo} alt={fixture.teams.home.name} />
 													</div>
 													<div className="home-team-name w-[100px]">
@@ -49,7 +49,7 @@ export default function FixturesTable({ fixtures }) {
 													<p className="text-lg font-bold">{fixture.goals.home} : {fixture.goals.away}</p>
 												</div>
 												<div className="team-away-details flex justify-evenly items-center flex-col w-[33%] gap-2">
-													<div className="away-team-logo w-[70px] h-[70px] flex items-center">
+													<div className="away-team-logo w-[50px] h-[50px] flex items-center">
 														<img src={fixture.teams.away.logo} alt={fixture.teams.away.name} />
 													</div>
 													<div className="away-team-name w-[100px]">
@@ -62,8 +62,8 @@ export default function FixturesTable({ fixtures }) {
 								))}
 							</div>
 						</div>
-						<div className="divider"></div>
-					</>
+						{index !== leagueData.length - 1 && <div className="divider match"></div>}
+					</div>
 				);
 			})}
 		</div>

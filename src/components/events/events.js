@@ -1,6 +1,8 @@
 import { GiSoccerBall } from 'react-icons/gi';
 import { FaExchangeAlt } from "react-icons/fa";
-import { TbRectangleVerticalFilled } from "react-icons/tb";
+import { TableEvents } from './table-events';
+import React, { useMemo } from "react";
+import { darkTheme, lightTheme } from "../dark-mode/global-style";
 
 export const EventTypes = {
 	Goal: 'Goal',
@@ -11,48 +13,48 @@ export const EventTypes = {
 	Subst: 'subst',
 }
 
-const eventIcons = {
+export const EventIcons = {
 	[EventTypes.Goal]: <GiSoccerBall style={{ fontSize: "2em" }} />,
 	[EventTypes.Subst]: <FaExchangeAlt style={{ fontSize: "2em" }} />,
 };
 
-export const Events = ({ fixture }) => {
+export const Events = ({ fixture, theme }) => {
+	const boxShadow = useMemo(() => {
+		return theme === "dark" ? darkTheme.eventBoxShadow : lightTheme.eventBoxShadow;
+	}, [theme]);
+
 	if (fixture.events.length === 0) {
 		return <p className="text-center">There are no events for this match yet, come back later</p>;
 	}
 
-	console.log('Evebts', fixture.events);
-
 	return (
-		<div align="center" className="fixture-events ">
-			<h1 className="text-gray-400 text-xl">{EventTypes.Events}</h1>
-			<div className="overflow-x-auto">
-				<table className="table-md">
-					<thead>
-						<tr>
-							<th>{EventTypes.Team}</th>
-							<th>{EventTypes.Time}</th>
-							<th>{EventTypes.Events}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{fixture.events.map((event, index) => (
-							<tr key={index}>
-								<th>{event.time.elapsed}'</th>
-								<td>{event.team.name}</td>
-								<td>
-									{event.type === EventTypes.Card && (
-										event.detail === 'Yellow Card' ?
-											<TbRectangleVerticalFilled style={{ fontSize: "2em", color: "yellow", stroke: "black", strokeWidth: "1" }} />
-											: <TbRectangleVerticalFilled style={{ fontSize: "2em", color: "red", stroke: "black", strokeWidth: "1" }} />
-									)}
-									{eventIcons[event.type] || null}
-								</td>
-
-							</tr>
-						))}
-					</tbody>
-				</table>
+		<div align="center" className="fixture-events-container">
+			<h1 className="fixture-events-title text-gray-400 text-xl">{EventTypes.Events}</h1>
+			<div className="fixture-events-details overflow-x-auto pt-2 pb-10">
+				<div className="table-events-container flex flex-col gap-2 w-auto md:w-2/3">
+					{fixture.events.map((event, index) => (
+						<div className="event-container grid grid-flow-col grid-cols-[45%_10%_45%] items-center justify-stretch" key={index}>
+							<div className="home-events-container flex items-center w-auto min-h-[50px] flex-row-reverse rounded-lg p-2"
+								style={{
+									boxShadow: event.team.id === fixture.teams.home.id ? boxShadow : ''
+								}}>
+								{event.team.id === fixture.teams.home.id && (
+									<TableEvents event={event} reverseLayout />
+								)}
+							</div>
+							<div className="event-time-elapsed"><p>{event.time.elapsed}'</p></div>
+							<div className="away-events-container  flex items-center w-auto min-h-[50px] rounded-lg p-2"
+								style={{
+									boxShadow: event.team.id === fixture.teams.away.id ? boxShadow : ''
+								}}
+							>
+								{event.team.id === fixture.teams.away.id && (
+									<TableEvents event={event} />
+								)}
+							</div>
+						</div>
+					))}
+				</div>
 			</div >
 		</div >
 	);

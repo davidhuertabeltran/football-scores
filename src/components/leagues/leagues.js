@@ -22,7 +22,7 @@ export const Leagues = ({ fixtures }) => {
 		} catch (error) {
 			setLoading(false);
 		}
-	}, [leagueID, url]);
+	}, [url]);
 
 	useEffect(() => {
 		// fetchData();
@@ -46,7 +46,7 @@ export const Leagues = ({ fixtures }) => {
 				</div>
 			</div>
 
-			<div className="live-matches-league-container border rounded-xl p-12 mt-8">
+			<div className="live-matches-league-container border rounded-xl px-6 py-12 mt-8">
 				<p className="text-xl font-bold uppercase text-center">Live Matches</p>
 				<FixturesTable fixtures={leagues} />
 			</div>

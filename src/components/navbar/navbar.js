@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ToggleTheme } from "../dark-mode/toggle";
 import { MdSportsSoccer } from "react-icons/md";
@@ -24,7 +24,7 @@ function NavBar({ theme, toggleTheme }) {
 		window.addEventListener('scroll', changeNav)
 	}, [])
 
-	const textColor = React.useMemo(() => {
+	const textColor = useMemo(() => {
 		if (scrollNav) {
 			return theme === "dark" ? lightTheme.navBarText : darkTheme.navBarText;
 		} else {
@@ -33,7 +33,7 @@ function NavBar({ theme, toggleTheme }) {
 
 	}, [theme, scrollNav]);
 
-	const backgroundColor = React.useMemo(() => {
+	const backgroundColor = useMemo(() => {
 		if (scrollNav) {
 			return theme === "dark" ? darkTheme.body : lightTheme.body;
 		} else {
