@@ -9,10 +9,14 @@ export default function FixturesTable({ fixtures }) {
 	const leagueNames = fixtures.map(fixture => fixture.league.name);
 	const uniqueLeagueIds = leagueIds.filter((leagueId, index) => leagueIds.indexOf(leagueId) === index);
 
-	const leagueData = uniqueLeagueIds.map((leagueId, index) => ({
-		id: leagueId,
-		name: leagueNames[index]
-	}));
+	const leagueData = uniqueLeagueIds.map(leagueId => {
+		const originalIndex = leagueIds.indexOf(leagueId);
+
+		return {
+			id: leagueId,
+			name: leagueNames[originalIndex]
+		};
+	});
 
 	return (
 		<div className="fixtures-league-groups px-6">

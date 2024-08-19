@@ -16,7 +16,7 @@ export const darkTheme = {
     bodyInverse: '#fff',
     textInverse: 'rgb(19, 28, 35)',
     cardfixtureBg: '#000',
-    cardfixtureBoxShadow: 'rgba(55, 53, 53, 0.72) 0px 1px 3px,rgb(155, 155, 155) 0px 1px 2px',
+    cardfixtureBoxShadow: 'rgba(55, 53, 53, 0.72) 0px 1px 3px,rgb(32, 28, 28) 0px 1px 2px',
     navBarText: 'black',
     eventBoxShadow: 'rgb(0, 0, 0) 2px 2px 2px'
 }
@@ -32,6 +32,11 @@ export const GlobalStyle = createGlobalStyle`
         background: ${({ theme }) => theme.cardfixtureBg};
         transition: all .5s linear;
         box-shadow: ${({ theme }) => theme.cardfixtureBoxShadow};
+    }
+
+    .search-results {
+        background: ${({ theme }) => theme.body};
+         box-shadow: ${({ theme }) => theme.cardfixtureBoxShadow};
     }
 `;
 

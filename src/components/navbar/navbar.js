@@ -7,9 +7,9 @@ import { darkTheme, lightTheme } from "../dark-mode/global-style";
 import { StyleSheetManager } from 'styled-components';
 import isValidProp from '@emotion/is-prop-valid';
 import { AvailableLeagues } from "../leagues/leagues-id";
+import { SearchBar } from "../search/search-bar";
 
 function NavBar({ theme, toggleTheme }) {
-
 	const [scrollNav, setScrollNav] = useState(false);
 
 	const changeNav = () => {
@@ -44,7 +44,7 @@ function NavBar({ theme, toggleTheme }) {
 	return (
 		<StyleSheetManager shouldForwardProp={propName => isValidProp(propName)}>
 			<Nav scrollNav={scrollNav} theme={theme} textColor={textColor} backgroundColor={backgroundColor} className="nav rounded-b">
-				<div className="navbar">
+				<div className="navbar items-start sm:items-center">
 					<div className="navbar-start">
 						<div className="dropdown">
 							<div tabIndex="0" role="button" className="btn btn-ghost lg:hidden">
@@ -61,15 +61,16 @@ function NavBar({ theme, toggleTheme }) {
 										d="M4 6h16M4 12h8m-8 6h16" />
 								</svg>
 							</div>
+
 							<ul
 								tabIndex="0"
 								className="menu menu-sm  opacity-0 dropdown-content rounded-box z-40 mt-3 w-52 p-2 shadow [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-primary"
 								style={{ backgroundColor: backgroundColor }}
 							>
-								<li className="text-lg"><Link to={`/`} className="link link-hover">All Leagues</Link></li>
+								<li className="text-sm"><Link to={`/`} className="link link-hover">All Leagues</Link></li>
 								{
 									AvailableLeagues.map((league, index) => (
-										<li key={index} className="text-lg">
+										<li key={index} className="text-sm">
 											<Link to={`/league/${league.id}`} className="link link-hover">{league.name}</Link>
 										</li>
 									))
@@ -79,18 +80,24 @@ function NavBar({ theme, toggleTheme }) {
 						<Link to="/" className="btn btn-ghost">{<MdSportsSoccer style={{ fontSize: "2em" }} />} ChidoScores</Link>
 					</div>
 					<div className="navbar-center hidden lg:flex">
+
 						<ul className="menu menu-horizontal px-1">
-							<li className="text-lg"><Link to={`/`} className="link link-hover">All Leagues</Link></li>
+							<li className="text-sm"><Link to={`/`} className="link link-hover">All Leagues</Link></li>
 							{
 								AvailableLeagues.map((league, index) => (
-									<li key={index} className="text-lg">
+									<li key={index} className="text-sm">
 										<Link to={`/league/${league.id}`} className="link link-hover">{league.name}</Link>
 									</li>
 								))
 							}
 						</ul>
 					</div>
-					<div className="navbar-end">
+					<div className="navbar-end gap-3 relative flex-col-reverse items-end sm:flex-row sm:items-center">
+						{
+							<div className="search-bar">
+								<SearchBar />
+							</div>
+						}
 						<ToggleTheme theme={theme} toggleTheme={toggleTheme} />
 					</div>
 				</div>

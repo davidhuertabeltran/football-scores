@@ -50,7 +50,7 @@ export const Leagues = ({ fixtures }) => {
 				<p className="text-xl font-bold uppercase text-center">Live Matches</p>
 				<FixturesTable fixtures={leagues} />
 			</div>
-			<div className="finished-matches-league-container border rounded-xl p-12 mt-8">
+			<div className="finished-matches-league-container border rounded-xl px-6 py-12 mt-8">
 				<p className="text-l font-bold text-center uppercase">Finished matches</p>
 				<p className="text-l font-bold text-center uppercase">{leagues[0].league.name}</p>
 				{loading ? (
