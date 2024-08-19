@@ -1,12 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FixtureBox } from '../fixture-status-indicators/fixture-box';
+import { Link } from 'react-router-dom';
 
 export default function FixturesTable({ fixtures }) {
 	const navigate = useNavigate();
 
 	const leagueIds = fixtures.map(fixture => fixture.league.id);
 	const leagueNames = fixtures.map(fixture => fixture.league.name);
+	const leagueLogos = fixtures.map(fixture => fixture.league.logo);
 	const uniqueLeagueIds = leagueIds.filter((leagueId, index) => leagueIds.indexOf(leagueId) === index);
 
 	const leagueData = uniqueLeagueIds.map(leagueId => {
@@ -14,7 +16,8 @@ export default function FixturesTable({ fixtures }) {
 
 		return {
 			id: leagueId,
-			name: leagueNames[originalIndex]
+			name: leagueNames[originalIndex],
+			logo: leagueLogos[originalIndex]
 		};
 	});
 
@@ -30,7 +33,15 @@ export default function FixturesTable({ fixtures }) {
 				return (
 					<div key={index} className="fixtures-table-container">
 						<div key={index} className="league-group my-10">
-							<h1 className="league-name font-bold uppercase">{league.name}</h1>
+
+							<div
+								onClick={() => navigate(`/league/${league.id}`)}
+								className="league-header inline-flex gap-2 items-center cursor-pointer">
+								<img className="w-[50px] h-auto" src={league.logo} alt={league.name} />
+								<h1 className="league-name font-bold uppercase">{league.name}</h1>
+							</div>
+
+
 							<div className="fixtures-table flex flex-wrap gap-8 pt-6 justify-center md:justify-start">
 								{leagueFixtures.map((fixture, fixtureIndex) => (
 									<div
@@ -70,6 +81,6 @@ export default function FixturesTable({ fixtures }) {
 					</div>
 				);
 			})}
-		</div>
+		</div >
 	);
 }

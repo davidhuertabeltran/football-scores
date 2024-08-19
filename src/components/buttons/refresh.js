@@ -1,11 +1,7 @@
-export const Refresh = () => {
-	const refresh = () => {
-		window.location.reload();
-	}
-
+export const Refresh = ({ fetchData }) => {
 	return (
 		<button
-			onClick={refresh}
+			onClick={fetchData}
 			className="btn btn-sm fixed bottom-3 right-2 z-40">Refresh</button>
 	)
 } 

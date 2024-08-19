@@ -4,8 +4,10 @@ import { FetchMatches } from '../../requests/fetch-matches';
 import { finishedDummy } from '../../lib/finished-matches-dummy';
 import { Back } from '../buttons/back';
 import FixturesTable from '../fixtures-table/fixtures-table';
+import { useRef } from 'react';
 
 export const Leagues = ({ fixtures }) => {
+	const toTopRef = useRef(null);
 	const params = useParams();
 	const leagueID = params.leagueID;
 	const leagues = fixtures.filter(fixture => fixture.league.id === parseInt(leagueID));
@@ -26,6 +28,7 @@ export const Leagues = ({ fixtures }) => {
 
 	useEffect(() => {
 		// fetchData();
+		window.scrollTo(0, 0);
 	}, [leagueID]);
 
 	if (leagues.length === 0) {
@@ -33,7 +36,7 @@ export const Leagues = ({ fixtures }) => {
 	}
 
 	return (
-		<div className="league-container">
+		<div className="league-container" ref={toTopRef}>
 			<div className="league-details flex justify-between items-center px-10">
 				<Back />
 				<div className="league-container flex items-center gap-2">

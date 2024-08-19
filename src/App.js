@@ -31,6 +31,7 @@ function App() {
     try {
       const matches = await FetchMatches(url);
       setFixtures(matches);
+      console.log(matches);
       setLoading(false);
 
     } catch (error) {
@@ -49,11 +50,11 @@ function App() {
         <BrowserRouter>
           <GlobalStyle />
           <NavBar theme={theme} toggleTheme={toggleTheme} />
-          <Refresh />
+          {/* <Refresh /> */}
           {/* <Refresh onRefresh={fetchData} /> */}
           {loading ? (
             <div className="text-center">Loading...</div>
-          ) : data.length === 0 ? ( //change to fixtures.length when using API
+          ) : data.length === 0 ? ( //change to fixtures.length when using API 
             <div className="text-center">There are no live matches at the moment</div>
           ) : (
             <Routes>
