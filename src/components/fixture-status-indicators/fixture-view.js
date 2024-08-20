@@ -17,7 +17,7 @@ export const FixtureView = ({ fixture }) => {
 							<p className="live-indicator relative font-bold text-sm">{FixtureEventTypes.Live}</p>
 						</div>
 						<p className="font-bold uppercase">{fixture.fixture.venue.name}</p>
-						<div className="fixture-status-elapsed text-center font-bold text-green-500">{fixture.fixture.status.elapsed}'</div>
+						<p className="fixture-status-elapsed text-center text-xl font-bold text-green-500">{fixture.fixture.status.elapsed}'</p>
 					</div>
 			}
 

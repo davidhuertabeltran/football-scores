@@ -12,26 +12,20 @@ import { ThemeProvider } from 'styled-components';
 import { Refresh } from './components/buttons/refresh';
 import { Footer } from './components/footer/footer';
 import { Leagues } from './components/leagues/leagues';
-import { AvailableLeagues } from './components/leagues/leagues-id';
 
 function App() {
-  const leagueIDs = AvailableLeagues.map(league => league.id);
-  const leagueNames = AvailableLeagues.map(league => league.name);
-  const leagueIDsString = leagueIDs.join('-');
-  // const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=${leagueIDsString}`;
   const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all`;
   const [theme, toggleTheme] = useDarkMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
-  const [fixtures, setFixtures] = useState([]);
+  const [liveFixtures, setLiveFixtures] = useState([]);
   const [loading, setLoading] = useState(false); //change to true when using API
 
   const fetchData = useCallback(async () => {
 
     try {
       const matches = await FetchMatches(url);
-      setFixtures(matches);
-      console.log(matches);
+      setLiveFixtures(matches);
       setLoading(false);
 
     } catch (error) {
@@ -58,9 +52,9 @@ function App() {
             <div className="text-center">There are no live matches at the moment</div>
           ) : (
             <Routes>
-              <Route path="/" element={<FixturesTable fixtures={data} />} />
+              <Route path="/" element={<FixturesTable fixtures={data} />} /> {/* change to liveFixtures when using API */}
               <Route path="/fixture/:matchID" element={<Fixture theme={theme} />} />
-              <Route path="/league/:leagueID" element={<Leagues fixtures={data} />} />
+              <Route path="/league/:leagueID" element={<Leagues fixtures={data} />} /> {/* remove fixtures when using API */}
             </Routes>
           )}
           <Footer />

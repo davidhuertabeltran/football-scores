@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 import { SearchResults } from './search-results';
-import { data } from '../../lib/dummy-data';
+import { leagueListClean } from '../../lib/league-list-clean';
 
 export const SearchBar = () => {
-	const [dummyResults, setDummyResults] = useState([]);
+	const [results, setResults] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
 
-	// const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all&league=${leagueID}`;
+	const fetchLeaguesData = async (value) => {
+		const searchValue = value.toLowerCase();
 
-	const fetchDummyData = async (value) => {
-		const filteredResults = data.filter((fixture) =>
-			fixture.league.name.toLowerCase().includes(value.toLowerCase())
+		const filteredResults = leagueListClean.filter((fixture) =>
+			fixture.league.name.toLowerCase().includes(searchValue) ||
+			fixture.country.name.toLowerCase().includes(searchValue)
 		);
 
 		const uniqueResults = Array.from(
 			new Map(filteredResults.map(item => [item.league.id, item])).values()
 		);
 
-		setDummyResults(uniqueResults);
+		setResults(uniqueResults);
 	};
 
 	const handleInputChange = (value) => {
 		setSearchTerm(value);
-		fetchDummyData(value);
-
+		fetchLeaguesData(value);
 	};
 
 	const clearResults = () => {
-		setDummyResults([]);
+		setResults([]);
 		setSearchTerm('');
 	};
 
@@ -42,7 +42,7 @@ export const SearchBar = () => {
 					type="text"
 					value={searchTerm}
 					onChange={(e) => handleInputChange(e.target.value)}
-					placeholder="Enter league name"
+					placeholder="Enter a league name or country"
 				/>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ export const SearchBar = () => {
 			</label>
 
 			<SearchResults
-				results={dummyResults}
+				results={results}
 				onSelectResult={handleSelectResult}
 				clearResults={clearResults}
 			/>

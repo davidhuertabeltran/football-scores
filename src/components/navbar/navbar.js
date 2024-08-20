@@ -68,13 +68,7 @@ function NavBar({ theme, toggleTheme }) {
 								style={{ backgroundColor: backgroundColor }}
 							>
 								<li className="text-sm"><Link to={`/`} className="link link-hover">All Leagues</Link></li>
-								{
-									AvailableLeagues.map((league, index) => (
-										<li key={index} className="text-sm">
-											<Link to={`/league/${league.id}`} className="link link-hover">{league.name}</Link>
-										</li>
-									))
-								}
+
 							</ul>
 						</div>
 						<Link to="/" className="btn btn-ghost">{<MdSportsSoccer style={{ fontSize: "2em" }} />} ChidoScores</Link>
@@ -83,13 +77,7 @@ function NavBar({ theme, toggleTheme }) {
 
 						<ul className="menu menu-horizontal px-1">
 							<li className="text-sm"><Link to={`/`} className="link link-hover">All Leagues</Link></li>
-							{
-								AvailableLeagues.map((league, index) => (
-									<li key={index} className="text-sm">
-										<Link to={`/league/${league.id}`} className="link link-hover">{league.name}</Link>
-									</li>
-								))
-							}
+
 						</ul>
 					</div>
 					<div className="navbar-end gap-3 relative flex-col-reverse items-end sm:flex-row sm:items-center">

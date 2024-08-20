@@ -19,7 +19,7 @@ export const TableEvents = ({ event, reverseLayout }) => {
 			{event.type !== EventTypes.Subst ? (
 				<p>{event.player.name}</p>
 			) : (
-				<div className="flex flex-col gap-1">
+				<div className={`subtitution flex flex-col gap-1 ${reverseLayout ? 'items-end' : 'items-start'}`}>
 					<p className="text-green-500">{event.player.name}</p>
 					<p className="text-red-500">{event.assist.name}</p>
 				</div>

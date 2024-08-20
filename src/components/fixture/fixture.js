@@ -17,15 +17,11 @@ export const Fixture = ({ theme }) => {
 	const [loading, setLoading] = useState(false); //change to true when using API
 
 	const fetchData = useCallback(async () => {
-
 		try {
-			console.log('Fetching data for matchID:', matchID);
 			const matches = await FetchMatches(url);
 			setFixture(matches[0]);
 			setLoading(false);
-
 		} catch (error) {
-
 			setLoading(false);
 		}
 	}, [matchID, url]);
@@ -43,7 +39,7 @@ export const Fixture = ({ theme }) => {
 	return (
 		<div className="fixture-container  px-10 border rounded-xl">
 			<div className="card-fixture-details py-1">
-				<div className="league-details flex justify-between xl:items-end items-center">
+				<div className="league-details flex justify-between xl:items-end items-center p-3">
 					<Back />
 					<div onClick={() => navigate(`/league/${fixture.league.id}`)} className="league-container cursor-pointer">
 						<div className="league-logo flex justify-end">
@@ -75,7 +71,7 @@ export const Fixture = ({ theme }) => {
 								</div>
 							</div>
 
-							<div className="fixture-goals w-[16%] text-center " align="center">
+							<div className="fixture-goals w-[33%] text-center " align="center">
 								{
 									<Score fixture={fixture} />
 								}

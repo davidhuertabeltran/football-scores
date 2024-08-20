@@ -32,7 +32,7 @@ export const SearchResults = ({ results, onSelectResult, clearResults }) => {
 						className="search-result"
 						onClick={onSelectResult}
 					>
-						<p>{result.league.name}</p>
+						<p>{result.league.name} - {result.country.name}</p>
 					</Link >
 				))
 			}
