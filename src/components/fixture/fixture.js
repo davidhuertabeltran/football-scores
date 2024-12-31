@@ -27,7 +27,7 @@ export const Fixture = ({ theme }) => {
 	}, [matchID, url]);
 
 	useEffect(() => {
-		// fetchData();
+		// fetchData(); //uncomment this line when using API
 		setFixture(data[6]) //comment this line when using API
 	}, [matchID]);
 

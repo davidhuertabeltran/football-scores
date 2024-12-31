@@ -5,7 +5,7 @@ import { finishedDummy } from '../../lib/finished-matches-dummy';
 import { Back } from '../buttons/back';
 import FixturesTable from '../fixtures-table/fixtures-table';
 import { useRef } from 'react';
-import { leagueListClean } from '../../lib/league-list-clean';
+import { leaguesListAllData } from '../../lib/leagues-list-all-data';
 import { data } from '../../lib/dummy-data';
 
 
@@ -23,7 +23,7 @@ export const Leagues = ({ fixtures }) => {
 	const [finishedFixtures, setFinishedFixtures] = useState([]);
 	const [loading, setLoading] = useState(false); //change to true when using API
 
-	const currentLeague = useMemo(() => leagueListClean.find(l => l.league.id === parseInt(leagueID, 10)), [leagueID]);
+	const currentLeague = useMemo(() => leaguesListAllData.find(l => l.league.id === parseInt(leagueID, 10)), [leagueID]);
 
 	const fetchLiveData = useCallback(async () => {
 		try {
@@ -43,6 +43,7 @@ export const Leagues = ({ fixtures }) => {
 		}
 	}, [urlFinishedFixtures]);
 
+	//comment when NOT using API
 	// useEffect(() => {
 	// 	setLoading(true);
 	// 	Promise.all([fetchLiveData(), fetchFinishedData()]).finally(() => {
@@ -76,10 +77,10 @@ export const Leagues = ({ fixtures }) => {
 				<p className="text-xl font-bold uppercase text-center">Live Matches</p>
 				{loading ? (
 					<div className="text-center">Loading...</div>
-				) : leagues.length === 0 ? ( //replace to leagues when not using API
+				) : leagues.length === 0 ? ( //replace to leagues when not using API, use liveFixtures when using API
 					<div className="text-center">There are no live matches at the moment</div>
 				) : (
-					<FixturesTable fixtures={leagues} /> //replace to leagues when not using API
+					<FixturesTable fixtures={leagues} /> //replace to leagues when not using API, and use liveFixtures when using API
 				)}
 			</div>
 			<div className="finished-matches-league-container border rounded-xl px-6 py-12 mt-8">
@@ -90,7 +91,7 @@ export const Leagues = ({ fixtures }) => {
 				) : finishedDummy.length === 0 ? (
 					<div className="text-center">There are no data for previous matches at the moment</div>
 				) : (
-					<FixturesTable fixtures={finishedDummy} />
+					<FixturesTable fixtures={finishedDummy} /> //change to finishedDummy when not using API, change to finishedFixtures when using API
 				)}
 			</div>
 		</div>

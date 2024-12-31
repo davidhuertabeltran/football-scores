@@ -35,7 +35,7 @@ function App() {
   }, [url]);
 
   useEffect(() => {
-    // fetchData();
+    fetchData(); //comment when NOT using API
   }, []);
 
   return (
@@ -48,13 +48,13 @@ function App() {
           {/* <Refresh onRefresh={fetchData} /> */}
           {loading ? (
             <div className="text-center">Loading...</div>
-          ) : data.length === 0 ? ( //change to fixtures.length when using API 
+          ) : data.length === 0 ? ( //change to liveFixtures.length when using API, otherwise use data.length
             <div className="text-center">There are no live matches at the moment</div>
           ) : (
             <Routes>
-              <Route path="/" element={<FixturesTable fixtures={data} />} /> {/* change to liveFixtures when using API */}
+              <Route path="/" element={<FixturesTable fixtures={liveFixtures} />} /> {/* change to liveFixtures when using API, otherwise use data */}
               <Route path="/fixture/:matchID" element={<Fixture theme={theme} />} />
-              <Route path="/league/:leagueID" element={<Leagues fixtures={data} />} /> {/* remove fixtures when using API */}
+              <Route path="/league/:leagueID" element={<Leagues fixtures={liveFixtures} />} /> {/* change to liveFixtures when using API, otherwise use data */}
             </Routes>
           )}
           <Footer />
